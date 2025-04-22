@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useTodoList } from "~/hooks/useTodoList";
 import Pagination from "../common/pageComponent";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 
 function TodoListComponent() {
+
+    const navigate = useNavigate();
     
     const [searchParams] = useSearchParams();
     const pageStr = searchParams.get("page") || "1"
@@ -22,6 +24,11 @@ function TodoListComponent() {
     if (isLoading) return <div className="p-4">로딩 중...</div>;
 
     const todos = todosData?.content || [];
+
+    // 읽기 페이지 이동
+    const moveRead = (tno:number|string) => {
+        navigate(`/todo/read/${tno}?page=${pageStr}&size=${sizeStr}`)
+    }
 
     return (
         <div className="p-4">
@@ -49,6 +56,7 @@ function TodoListComponent() {
             <tr
                 key={todo.tno}
                 className="border-b hover:bg-gray-100 cursor-pointer transition"
+                onClick={() => moveRead(todo.tno || 0)}
             >
                 <td className="px-4 py-2 text-md text-gray-800">{todo.title}</td>
                 <td className="px-4 py-2 text-md text-gray-600 text-right">{todo.writer}</td>
@@ -63,6 +71,7 @@ function TodoListComponent() {
                 <div
                 key={todo.tno}
                 className="bg-white shadow-md rounded-lg p-4 aspect-square flex flex-col justify-between"
+                onClick={() => moveRead(todo.tno || 0)}
                 >
                 <div>
                     <div className="font-bold text-xl mb-1">{todo.title}</div>

@@ -8,9 +8,9 @@ interface PaginationProps {
 function Pagination({ currentPage, totalPages }: PaginationProps) {
     const navigate = useNavigate();
 
-    const goToPage = (page: number) => {
+    const goToPage = (page: number, size: number=10) => {
         if (page >= 1 && page <= totalPages) {
-            navigate(`?page=${page}`);
+            navigate(`?page=${page}&size=${size}`);
         }
     };
 
@@ -35,6 +35,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
                     onClick={() => goToPage(pageNumbers[0] - 10)}
                     className="px-2 py-1 text-gray-700 hover:text-blue-500 transition"
                 >
+                    {/* 왼쪽 삼각형 */}
                     &#x25C0;
                 </button>
             )}
@@ -58,7 +59,8 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
                     onClick={() => goToPage(pageNumbers[0] + 10)}
                     className="px-2 py-1 text-gray-700 hover:text-blue-500 transition"
                 >
-                    &#x25B6;
+                    {/* 오른쪽 삼각형 */}
+                    &#x25B6; 
                 </button>
             )}
         </div>

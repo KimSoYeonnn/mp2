@@ -12,6 +12,12 @@ export async function testTodoList(page:string, size:string) {
     
 }
 
+export async function getTodo(tno: string) {
+    console.log(tno)
+    const res = await axios.get(`${host}/read/${tno}`)
+    return res.data
+}
+
 export async function testTodoAddForm(formData:FormData):Promise<ActionResult<number>> {
 
     await new Promise(resolve => setTimeout(resolve, 2000));
