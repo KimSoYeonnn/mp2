@@ -17,3 +17,9 @@ export interface PageResult<T> {
     first: boolean;
     last: boolean;
 }
+
+interface TodoAdd {
+    title: string,
+    writer: string,
+    content: string
+}
