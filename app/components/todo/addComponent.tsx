@@ -1,13 +1,40 @@
 
 import { useTodoAddForm } from "~/hooks/useTodoAddForm";
+import LoadingComponent from "../common/loadingComponent";
+import ResultComponent from "../common/resultComponent";
+import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 
 function TodoAddComponent() {
 
     const {message, formAction} = useTodoAddForm();
+
+    const navigate = useNavigate();
+
+    const [loading, setLoading] = useState(false);
+    const [result, setResult] = useState("");
+
+    // message가 생기면 로딩 종료 + 처리 결과 보여주기
+    useEffect(() => {
+        if (message) {
+            console.log('message : ', message)
+            setLoading(false);
+            setResult(message);
+            if (message.startsWith("등록 완료")) {
+                console.log('message : ', message)
+                const timer = setTimeout(() => navigate("/todo/list"), 1500);
+                return () => clearTimeout(timer);
+            }
+        }
+    }, [message, navigate]);
+
+    const onSubmit = () => {
+        setLoading(true);
+    };
     
 
     return (
-        <form action={formAction} className="p-4 space-y-4">
+        <form action={formAction} className="p-4 space-y-4" onSubmit={onSubmit}>
             <div className="text-2xl font-bold">할 일 추가</div>
 
             <div>
@@ -46,7 +73,8 @@ function TodoAddComponent() {
                 등록
             </button>
 
-            {message && <div className="mt-4 text-green-600">{message}</div>}
+            <LoadingComponent isLoading={loading} />
+            {result && <ResultComponent msg={result} closeFn={() => setResult("")} />}
         </form>
     );
 }
