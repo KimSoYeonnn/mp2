@@ -6,5 +6,6 @@ export default [
         route("list", "routes/todo/listPage.tsx"),
         route("add", "routes/todo/addPage.tsx"),
         route("read/:tno", "routes/todo/readPage.tsx"),
+        route("modify/:tno", "routes/todo/modifyPage.tsx")
     ])
 ] satisfies RouteConfig;

@@ -37,21 +37,21 @@ export default function TodoLayout() {
                     </h1>
 
                     <div className="flex items-center gap-2">
-                        <Link
-                            to="/todo/list"
-                            className="px-3 py-2 text-sm sm:text-base bg-gray-100 hover:bg-gray-200 rounded-md transition-colors whitespace-nowrap min-w-[90px] text-center"
-                        >
-                            <span className="hidden sm:inline">📋 Todo List</span>
-                            <span className="inline sm:hidden">📋</span>
-                        </Link>
+                    <Link
+                    to="/todo/list"
+                    className="px-2 sm:px-3 py-2 text-sm sm:text-base bg-gray-100 hover:bg-gray-200 rounded-md transition-colors whitespace-nowrap min-w-0 sm:min-w-[90px] w-fit text-center"
+                    >
+                    <span className="hidden sm:inline">📋 Todo List</span>
+                    <span className="inline sm:hidden">📋</span>
+                    </Link>
 
-                        <Link
-                            to="/todo/add"
-                            className="px-3 py-2 text-sm sm:text-base bg-gray-100 rounded-md hover:bg-gray-200 transition-colors whitespace-nowrap min-w-[90px] text-center"
-                        >
-                            <span className="hidden sm:inline">➕ Add Todo</span>
-                            <span className="inline sm:hidden">➕</span>
-                        </Link>
+                    <Link
+                    to="/todo/add"
+                    className="px-2 sm:px-3 py-2 text-sm sm:text-base bg-gray-100 hover:bg-gray-200 rounded-md transition-colors whitespace-nowrap min-w-0 sm:min-w-[90px] w-fit text-center"
+                    >
+                    <span className="hidden sm:inline">➕ Add Todo</span>
+                    <span className="inline sm:hidden">➕</span>
+                    </Link>
 
                         {/* 👤 사용자 변경 버튼 */}
                         <div className="relative" ref={dropdownRef}>

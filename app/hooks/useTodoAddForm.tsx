@@ -1,11 +1,8 @@
 
-import { useActionState, useState } from "react";
+import { useActionState } from "react";
 import { testTodoAddForm } from "~/api/todoAPI";
 
 export function useTodoAddForm() {
-
-    // const [loading, setLoading] = useState(false);
-    // const [result, setResult] = useState("");
     
     const addTodoAction = async (_prevState: any, formData: FormData): Promise<string> => {
 
@@ -19,7 +16,6 @@ export function useTodoAddForm() {
    
         try {
             const response = await testTodoAddForm(formData);
-
 
             if (response.result === "success") {
                 const msg = `등록 완료 (번호: ${response.data})`

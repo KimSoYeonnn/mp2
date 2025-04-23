@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { ActionResult } from "~/types/common";
-import type { TodoAdd } from "~/types/todo";
+import type { Todo, TodoAdd } from "~/types/todo";
 
 const host = "http://localhost:8080/api/v1/todos";
 
@@ -18,10 +18,35 @@ export async function getTodo(tno: string) {
     return res.data
 }
 
+export async function deleteTodo(tno: number) {
+    const res = await axios.delete(`${host}/${tno}`);
+    return res.data;
+}
+  
+
+export async function updateTodo(formData:FormData):Promise<ActionResult<number>> {
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    const tno = formData.get("tno");
+    const title = formData.get("title");
+    const content = formData.get("content");
+
+    console.log("tno!!! ", tno)
+
+    if (!tno) {
+        throw new Error("tno가 없습니다.");
+    }
+    
+    const res = await axios.put(`${host}/${tno}`, formData)
+    console.log("서버 응답:", res.data); 
+
+    return res.data;
+}
+
 export async function testTodoAddForm(formData:FormData):Promise<ActionResult<number>> {
 
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log(formData)
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    // console.log(formData)
 
     const res = await axios.post(`${host}`, formData);
     
