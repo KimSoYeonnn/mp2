@@ -15,8 +15,8 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
     };
 
     const createPageNumbers = () => {
-        const start = Math.floor((currentPage - 1) / 10) * 10 + 1;
-        const end = Math.min(start + 9, totalPages);
+        const start = Math.floor((currentPage - 1) / 5) * 5 + 1;
+        const end = Math.min(start + 4, totalPages);
         const pages = [];
 
         for (let i = start; i <= end; i++) {
@@ -32,7 +32,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
         <div className="flex justify-center items-center gap-2 mt-6 text-lg">
             {pageNumbers[0] > 1 && (
                 <button
-                    onClick={() => goToPage(pageNumbers[0] - 10)}
+                    onClick={() => goToPage(pageNumbers[0] - 5)}
                     className="px-2 py-1 text-gray-700 hover:text-blue-500 transition"
                 >
                     {/* 왼쪽 삼각형 */}
@@ -56,7 +56,7 @@ function Pagination({ currentPage, totalPages }: PaginationProps) {
 
             {pageNumbers[pageNumbers.length - 1] < totalPages && (
                 <button
-                    onClick={() => goToPage(pageNumbers[0] + 10)}
+                    onClick={() => goToPage(pageNumbers[0] + 5)}
                     className="px-2 py-1 text-gray-700 hover:text-blue-500 transition"
                 >
                     {/* 오른쪽 삼각형 */}

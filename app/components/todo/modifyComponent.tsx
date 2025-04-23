@@ -91,7 +91,6 @@ function TodoModifyComponent({todo}: TodoModifyProps) {
                 if (confirm("정말 삭제하시겠습니까?")) {
                     const result = await deleteTodo(todo.tno);
                     if (result.result === "success") {
-                    alert("삭제 완료!");
                     navigate("/todo/list");
                     } else {
                     alert("삭제 실패!");

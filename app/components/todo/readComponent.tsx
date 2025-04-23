@@ -13,10 +13,10 @@ function TodoReadComponent({ todo }: TodoReadProps) {
     };
 
     return (
-        <div className="p-6 max-w-xl mx-auto bg-white shadow-md roundewxl space-y-4">
+        <div className="p-6 max-w-xl mx-auto bg-white shadow-md rounded-xl space-y-4">
             <h2 className="text-3xl font-bold text-gray-800">{todo.title}</h2>
 
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-500 flex flex-col sm:flex-row sm:space-x-4">
                 <span className="mr-4">작성자: <span className="font-semibold">{todo.writer}</span></span>
                 <span>
                     등록일: {todo.regDate ? new Date(todo.regDate).toLocaleString() : "-"}
